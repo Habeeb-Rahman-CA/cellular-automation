@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conway's Game of Life</title>
+  <meta name="description" content="Minimalist monochrome Conway's Game of Life simulator." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="board"></canvas>
+
+  <aside class="hud" aria-label="Controls">
+    <div class="hud-group stats">
+      <div class="stat" title="Generation">
+        <span class="label">GEN</span>
+        <span id="gen" class="value">0</span>
+      </div>
+      <div class="stat" title="Population">
+        <span class="label">POP</span>
+        <span id="pop" class="value">0</span>
+      </div>
+    </div>
+
+    <div class="hud-group actions">
+      <button id="playBtn" class="icon-btn" title="Play / Pause (Space)" aria-label="Play">
+        <svg id="playIcon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <polygon points="6,4 20,12 6,20" />
+        </svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" hidden>
+          <rect x="5" y="4" width="5" height="16" />
+          <rect x="14" y="4" width="5" height="16" />
+        </svg>
+      </button>
+
+      <button id="stepBtn" class="icon-btn" title="Step (S)" aria-label="Step">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <polygon points="4,4 15,12 4,20" />
+          <rect x="17" y="4" width="3" height="16" />
+        </svg>
+      </button>
+
+      <button id="randomBtn" class="icon-btn" title="Randomize (R)" aria-label="Randomize">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <rect x="3" y="3" width="5" height="5" />
+          <rect x="16" y="3" width="5" height="5" />
+          <rect x="9.5" y="9.5" width="5" height="5" />
+          <rect x="3" y="16" width="5" height="5" />
+          <rect x="16" y="16" width="5" height="5" />
+        </svg>
+      </button>
+
+      <button id="clearBtn" class="icon-btn" title="Stop / Clear (C)" aria-label="Clear">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <rect x="5" y="5" width="14" height="14" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="hud-group sliders">
+      <label class="control" title="Simulation speed (generations per second)">
+        <span>SPD <em id="speedVal">10</em></span>
+        <input id="speed" type="range" min="1" max="60" value="10" />
+      </label>
+
+      <label class="control" title="Random fill density">
+        <span>DEN <em id="densityVal">25</em>%</span>
+        <input id="density" type="range" min="5" max="80" value="25" />
+      </label>
+
+      <label class="control" title="Cell size in pixels">
+        <span>SIZE <em id="sizeVal">12</em></span>
+        <input id="cellSize" type="range" min="4" max="30" value="12" />
+      </label>
+    </div>
+
+    <div class="hud-group options">
+      <select id="pattern" aria-label="Insert pattern" title="Insert pattern">
+        <option value="">PATTERN</option>
+        <option value="glider">Glider</option>
+        <option value="lwss">Spaceship</option>
+        <option value="pulsar">Pulsar</option>
+        <option value="gun">Glider Gun</option>
+        <option value="rpent">R-Pentomino</option>
+      </select>
+
+      <label class="toggle" title="Wrap edges"><input id="wrap" type="checkbox" checked /><span>WRAP</span></label>
+      <label class="toggle" title="Show grid"><input id="grid" type="checkbox" checked /><span>GRID</span></label>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>
